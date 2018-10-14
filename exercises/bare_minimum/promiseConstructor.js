@@ -8,13 +8,32 @@ var fs = require('fs');
 var request = require('request');
 
 // This function should retrieve the first line of the file at `filePath`
-var pluckFirstLineFromFileAsync = function(filePath) {
-  // TODO
-};
+var pluckFirstLineFromFileAsync = function (filePath, callback) {
+
+  return new Promise(function (resolve, reject) {
+    fs.readFile(filePath, 'utf8', function (err, content) {
+      if (err) {
+        reject(err)
+      } else {
+        var index = content.indexOf('\n')
+        resolve(content.slice(0, index - 1))
+      }
+    })
+  })
+}
 
 // This function should retrieve the status code of a GET request to `url`
-var getStatusCodeAsync = function(url) {
-  // TODO
+var getStatusCodeAsync = function (url) {
+
+  return new Promise(function (resolve, reject) {
+    request(url, 'utf8', function (err, content) {
+      if (err) {
+        reject(err, new Error('err'))
+      } else {
+        resolve(content.statusCode)
+      }
+    })
+  })
 };
 
 // Export these functions so we can test them and reuse them in later exercises
