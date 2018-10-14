@@ -13,14 +13,14 @@ var pluckFirstLineFromFileAsync = function (filePath, callback) {
   return new Promise(function (resolve, reject) {
     fs.readFile(filePath, 'utf8', function (err, content) {
       if (err) {
-        reject(err)
+        reject(err);
       } else {
-        var index = content.indexOf('\n')
-        resolve(content.slice(0, index - 1))
+        var index = content.indexOf('\n');
+        resolve(content.slice(0, index));
       }
-    })
-  })
-}
+    });
+  });
+};
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function (url) {
@@ -28,12 +28,12 @@ var getStatusCodeAsync = function (url) {
   return new Promise(function (resolve, reject) {
     request(url, 'utf8', function (err, content) {
       if (err) {
-        reject(err, new Error('err'))
+        reject(err, new Error('err'));
       } else {
-        resolve(content.statusCode)
+        resolve(content.statusCode);
       }
-    })
-  })
+    });
+  });
 };
 
 // Export these functions so we can test them and reuse them in later exercises

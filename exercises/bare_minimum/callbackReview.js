@@ -7,38 +7,29 @@ var request = require('request');
 
 
 // This function should retrieve the first line of the file at `filePath`
-var pluckFirstLineFromFile = function (filePath) {
-
-  // console.log('arg0', arguments[0], 'arg1', arguments[1])
-  var cbfunc = arguments[1]
+var pluckFirstLineFromFile = function (filePath, cbfunc) {
 
   fs.readFile(filePath, 'utf8', function (err, content) {
-    // console.log('cb', err, content, cbfunc)
     if (err) {
-      // console.log('err');
-      cbfunc(err)
+      cbfunc(err);
     } else {
-      // console.log('cont', content, cbfunc);
-      var index = content.indexOf('\n')
-      cbfunc(err, content.slice(0, index - 1))
+      var index = content.indexOf('\n');
+      cbfunc(err, content.slice(0, index));
     }
-  })
-
-
-
+  });
 };
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCode = function (url) {
-  var cbfunc = arguments[1]
+  var cbfunc = arguments[1];
   request(url, function (error, response, body) {
     // console.log('error:', error); 
     // console.log('statusCode:', response && response.statusCode); 
     // console.log('body:', body); 
     if (error) {
-      cbfunc(error)
+      cbfunc(error);
     } else {
-      cbfunc(error, response.statusCode)
+      cbfunc(error, response.statusCode);
     }
   });
 };

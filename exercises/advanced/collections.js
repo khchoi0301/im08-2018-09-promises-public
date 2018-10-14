@@ -16,9 +16,9 @@ var writeFileAsync = util.promisify(fs.writeFile);
 var combineFirstLineOfManyFiles = function (filePaths, writePath) {
   return Promise.all(filePaths.map(pluckFirstLine))
     .then((first) => {
-      var firstLines = first.join('\n')
-      return writeFileAsync(writePath, firstLines, 'utf8')
-    })
+      var firstLines = first.join('\n');
+      return writeFileAsync(writePath, firstLines, 'utf8');
+    });
 };
 
 // Export these functions so we can unit test them

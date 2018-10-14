@@ -19,11 +19,11 @@ var fetchProfileAndWriteToFile = function (readFilePath, writeFilePath) {
 
   return pluckFirstLineFromFileAsync(readFilePath)
     .then(function (id) {
-      return getGitHubProfileAsync(id)
+      return getGitHubProfileAsync(id);
     })
     .then(function (info) {
-      return writeFileAsync(writeFilePath, JSON.stringify(info))
-    })
+      return writeFileAsync(writeFilePath, JSON.stringify(info));
+    });
 
 };
 
